@@ -1,6 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Houses</h1>
+<%= form_tag(houses_path, method: :get) do %>
+ <%= label_tag :type %><br>
+ 
+     <% Type.all.each do |type| %>
+  <%= check_box_tag "house[type_ids][]", type.id %>
+ <%=type.typename%>
+  <br />
+<% end %>
+<%= label_tag :feature %> <br>
+     <% Feature.all.each do |feature| %>
+  <%= check_box_tag "house[feature_ids][]", feature.id %>
+ <%=feature.features%>
+  <br />
+<% end %>
+
+ <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+
+
 
 <table>
   <thead>
@@ -28,5 +48,7 @@
 </table>
 
 <br>
+ <%if user_signed_in? %>
+<%= link_to 'New House', new_house_path %> 
+<% end %>
 
-<%= link_to 'New House', new_house_path %>

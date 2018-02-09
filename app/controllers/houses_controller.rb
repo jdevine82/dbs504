@@ -6,6 +6,11 @@ class HousesController < ApplicationController
   # GET /houses.json
   def index
     @houses = House.all
+    @houses = if params[:type_ids]
+     @houses = House.find (params[:type_ids])
+  else
+    House.all
+  end
   end
 
   # GET /houses/1
@@ -19,9 +24,7 @@ class HousesController < ApplicationController
     @house = House.new
   end
   
-  def filters
-      @houses = House.all
-  end
+  
 
   # GET /houses/1/edit
   def edit
@@ -77,6 +80,6 @@ class HousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
-      params.require(:house).permit(:photo, :name, :type_id)
+      params.require(:house).permit(:photo, :name, :type_id, :type_ids)
     end
 end
