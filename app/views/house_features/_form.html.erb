@@ -1,0 +1,25 @@
+<%= form_for(@house_feature) do |f| %>
+  <% if @house_feature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@house_feature.errors.count, "error") %> prohibited this house_feature from being saved:</h2>
+
+      <ul>
+      <% @house_feature.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :house_id %><br>
+    <%= f.number_field :house_id %>
+  </div>
+  <div class="field">
+    <%= f.label :feature_id %><br>
+    <%= f.number_field :feature_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing House Features</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>House</th>
+      <th>Feature</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @house_features.each do |house_feature| %>
+      <tr>
+        <td><%= house_feature.house_id %></td>
+        <td><%= house_feature.feature_id %></td>
+        <td><%= link_to 'Show', house_feature %></td>
+        <td><%= link_to 'Edit', edit_house_feature_path(house_feature) %></td>
+        <td><%= link_to 'Destroy', house_feature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New House feature', new_house_feature_path %>

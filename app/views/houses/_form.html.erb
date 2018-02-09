@@ -1,0 +1,44 @@
+<%= form_for(@house) do |f| %>
+  <% if @house.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@house.errors.count, "error") %> prohibited this house from being saved:</h2>
+
+      <ul>
+      <% @house.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field"> 
+   <%= f.label :name %> <br>
+  <%= f.text_field :name %> <br>
+  
+  <%= f.label :type %><br>
+  <%= f.select :type_id, 
+    options_from_collection_for_select(Type.all, :id, :typename, @house.type_id) %><br>
+    <%= f.label :features %><br>
+
+    <% Feature.all.each do |feature| %>
+  <%= check_box_tag "house[feature_ids][]", feature.id, @house.feature_ids.include?(feature.id) %>
+ <%=feature.features%>
+  <br />
+<% end %>
+    <%= f.label :photo %><br>
+    <%= f.text_field :photo %>
+    
+  
+  </div>
+  
+
+ <%= f.file_field :photo %>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

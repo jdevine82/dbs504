@@ -1,0 +1,2 @@
+module HouseFeaturesHelper
+end
