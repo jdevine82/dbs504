@@ -18,15 +18,23 @@
   <%= f.text_field :name %> <br>
   
   <%= f.label :type %><br>
+
   <%= f.select :type_id, 
     options_from_collection_for_select(Type.all, :id, :typename, @house.type_id) %><br>
-    <%= f.label :features %><br>
+ 
 
-    <% Feature.all.each do |feature| %>
-  <%= check_box_tag "house[feature_ids][]", feature.id, @house.feature_ids.include?(feature.id) %>
- <%=feature.features%>
+     <%= f.label :features %><br>
+    <%= collection_check_boxes(:house, :feature_ids, Feature.all, :id, :features) %>
+
+  <br>
+
+   
+    
+
   <br />
-<% end %>
+
+
+
     <%= f.label :photo %><br>
     <%= f.text_field :photo %>
     

@@ -2,22 +2,7 @@
 
 <h1>Listing Houses</h1>
 <%= form_tag(houses_path, method: :get) do %>
- <%= label_tag :type %><br>
  
-     <% Type.all.each do |type| %>
-  <%= check_box_tag "house[type_ids][]", type.id %>
- <%=type.typename%>
-  <br>
-<% end %>
-<%= label_tag :feature %> <br>
-     <% Feature.all.each do |feature| %>
-  <%= check_box_tag "house[feature_ids][]", feature.id %>
- <%=feature.features%>
-  <br>
-<% end %>
-
- <%= submit_tag 'Search', name: nil %>
-<% end %>
 
 <fieldset class="search-field">
   <legend>Search Our Database</legend>
@@ -47,7 +32,7 @@
     <div class="actions"><%= f.submit "Search" %></div>
   <% end %>
 </fieldset>
-
+<% end %>
 
 
 
