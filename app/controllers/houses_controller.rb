@@ -5,13 +5,15 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.json
   def index
-    @houses = House.all
-    @houses = if params[:type_ids]
-     @houses = House.find (params[:type_ids])
+  
+     @q = House.ransack(params[:q])
+       @houses = @q.result(distinct: true)
+
+    
   else
     House.all
   end
-  end
+  
 
   # GET /houses/1
   # GET /houses/1.json
@@ -80,6 +82,6 @@ class HousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
-      params.require(:house).permit(:photo, :name, :type_id, :type_ids)
+      params.require(:house).permit(:photo, :name, :type_id, :type_ids, :q)
     end
 end

@@ -7,17 +7,46 @@
      <% Type.all.each do |type| %>
   <%= check_box_tag "house[type_ids][]", type.id %>
  <%=type.typename%>
-  <br />
+  <br>
 <% end %>
 <%= label_tag :feature %> <br>
      <% Feature.all.each do |feature| %>
   <%= check_box_tag "house[feature_ids][]", feature.id %>
  <%=feature.features%>
-  <br />
+  <br>
 <% end %>
 
  <%= submit_tag 'Search', name: nil %>
 <% end %>
+
+<fieldset class="search-field">
+  <legend>Search Our Database</legend>
+  <%= search_form_for @q do |f| %>
+ 
+
+    <div class="field">
+      <%= f.label "Type" %><br>
+      <%= f.collection_check_boxes :type_id_in_any, Type.all, :id, :typename do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
+    
+        <div class="field">
+      <%= f.label "Feature" %><br>
+      <%= f.collection_check_boxes :features_id_in_any, Feature.all, :id, :features do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions"><%= f.submit "Search" %></div>
+  <% end %>
+</fieldset>
 
 
 
