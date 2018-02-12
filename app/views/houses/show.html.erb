@@ -9,13 +9,17 @@
 </div>
  
   
-  
 
 <div class='row'>
-  <div class='col-md-6'>
-    <%= image_tag @house.photo.url %>
+  <div class='col-md-4'>
+  
+    <%= image_tag @house.photo.url, class: 'img-fluid' %>
+  
   </div>
-  <div class='col-md-6'>
+  <div class='col-md-4'>
+  <br>
+  </div>
+  <div class='col-md-4'>
   
     <h2> Features </h2>
     <% @house.features.each do |o| %>
@@ -28,6 +32,7 @@
   </div>
 
 </div>
+
 
 <%= link_to 'Edit', edit_house_path(@house) %> |
 <%= link_to 'Back', houses_path %>
