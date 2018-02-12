@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209114824) do
+ActiveRecord::Schema.define(version: 20180211131202) do
 
   create_table "features", force: :cascade do |t|
     t.string   "features"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180209114824) do
     t.datetime "photo_updated_at"
     t.string   "name"
     t.integer  "type_id"
+    t.string   "blurb"
   end
 
   create_table "types", force: :cascade do |t|

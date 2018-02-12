@@ -1,32 +1,39 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Houses</h1>
+<br>
+<h1>Find a House Package</h1>
 <%= form_tag(houses_path, method: :get) do %>
  
 
-<fieldset class="search-field">
+<fieldset class="jumbotron">
   <legend>Search Our Database</legend>
   <%= search_form_for @q do |f| %>
  
 
-    <div class="field">
-      <%= f.label "Type" %><br>
+    <div class="row"> 
+     <%= f.label "Type" %><br>
+    <ul class="checkbox-grid">
+     
       <%= f.collection_check_boxes :type_id_in_any, Type.all, :id, :typename do |b| %>
-        <div class="collection-check-box">
+        <li class="collection-check-box">
           <%= b.check_box %>
           <%= b.label %>
-        </div>
+        </li>
       <% end %>
+      </ul>
     </div>
+    <br>
+    <br>
     
-        <div class="field">
+        <div class="row">
       <%= f.label "Feature" %><br>
+       <ul class="checkbox-grid">
       <%= f.collection_check_boxes :features_id_in_any, Feature.all, :id, :features do |b| %>
-        <div class="collection-check-box">
+        <li class="collection-check-box">
           <%= b.check_box %>
           <%= b.label %>
-        </div>
+        </li>
       <% end %>
+      </ul>
     </div>
 
     <div class="actions"><%= f.submit "Search" %></div>
@@ -36,11 +43,13 @@
 
 
 
-<table>
+<table class="table table-hover" >
   <thead>
     <tr>
-      <th>House</th>
-      <th colspan="3"></th>
+      <th>House Name </th>
+      <th>Layout</th>
+      <th>Type</th>
+      <th>Features</th>
     </tr>
   </thead>
 
@@ -48,8 +57,14 @@
     <% @houses.each do |house| %>
       <tr>
        <td> <%= house.name %> </td>
-       <td> <%= house.type_id %> </td>
+      <td> <%= image_tag house.photo.url(:small) %></td>
+       <td> <%= house.type.typename %> </td>
+       <td> <% house.features.each do |o| %>
+            <%= o.features  %>
+            <br>
+            <%end %>
        
+       </td>
         <td><%= link_to 'Show', house %></td>
         <%if user_signed_in? %>
         <td><%= link_to 'Edit', edit_house_path(house) %></td>

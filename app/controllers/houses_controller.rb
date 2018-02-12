@@ -1,6 +1,7 @@
 class HousesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_house, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /houses
   # GET /houses.json
@@ -82,6 +83,6 @@ class HousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
-      params.require(:house).permit(:photo, :name, :type_id, :type_ids, :q, { :feature_ids => [] })
+      params.require(:house).permit(:photo, :name, :type_id, :type_ids, :q, { :feature_ids => [] }, :blurb)
     end
 end

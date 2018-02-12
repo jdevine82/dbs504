@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>Baz Build</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to 'Registration', new_user_registration_path %>
-<%= link_to 'Log In', new_user_session_path %>
-<%= link_to("Log Out", destroy_user_session_path, method: :delete) %>
-<%= yield %>
+  <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+             <%if not user_signed_in? %>  <li><%= link_to 'Registration', new_user_registration_path %></li>
+            <li><%= link_to 'Log In', new_user_session_path %></li> <% end %>
+                  <%if user_signed_in? %>  <li><%= link_to("Houses", houses_path ) %></li> <% end %>
+                        <%if user_signed_in? %>  <li><%= link_to("Features", features_path ) %></li> <% end %>
+            <%if user_signed_in? %>  <li><%= link_to("Types", types_path ) %></li> <% end %>
+            <%if user_signed_in? %>  <li><%= link_to("Log Out", destroy_user_session_path, method: :delete) %></li> <% end %>
+
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+   
+      <%= yield %>
+    </div>
 
 </body>
 </html>

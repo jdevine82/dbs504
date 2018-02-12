@@ -22,12 +22,20 @@
   <%= f.select :type_id, 
     options_from_collection_for_select(Type.all, :id, :typename, @house.type_id) %><br>
  
-
+ <div class="row">
      <%= f.label :features %><br>
-    <%= collection_check_boxes(:house, :feature_ids, Feature.all, :id, :features) %>
-
+       <ul class="checkbox-grid">
+    <%= collection_check_boxes :house, :feature_ids, Feature.all, :id, :features do |b| %>
+    <li class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </li>
+        <% end %>
+</ul>
+</div>
   <br>
-
+ <%= f.label :blurb %> <br>
+ <%= f.text_area :blurb,  size: "24x6" %>
    
     
 
